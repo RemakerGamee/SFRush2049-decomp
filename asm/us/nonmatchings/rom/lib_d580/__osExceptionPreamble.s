@@ -144,9 +144,9 @@ glabel __osExceptionPreamble
     /* D7A8 8000CBA8 3C018003 */  lui        $at, %hi(__osIntOffTable)
     /* D7AC 8000CBAC 002A0821 */  addu       $at, $at, $t2
     /* D7B0 8000CBB0 902AD810 */  lbu        $t2, %lo(__osIntOffTable)($at)
-    /* D7B4 8000CBB4 3C018003 */  lui        $at, %hi(jtbl_8002D830_main)
+    /* D7B4 8000CBB4 3C018003 */  lui        $at, %hi(__osIntTable)
     /* D7B8 8000CBB8 002A0821 */  addu       $at, $at, $t2
-    /* D7BC 8000CBBC 8C2AD830 */  lw         $t2, %lo(jtbl_8002D830_main)($at)
+    /* D7BC 8000CBBC 8C2AD830 */  lw         $t2, %lo(__osIntTable)($at)
     /* D7C0 8000CBC0 01400008 */  jr         $t2
     /* D7C4 8000CBC4 00000000 */   nop
     /* D7C8 8000CBC8 2401DFFF */  addiu      $at, $zero, -0x2001

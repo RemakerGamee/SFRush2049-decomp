@@ -42657,5 +42657,54 @@ void stunt_session_end(void) {
     all_player_sounds_clear();  /* TODO: needs different function for results */
 }
 
+/**
+ * game_loop - Main game loop function
+ * 
+ * This is the core execution loop that handles:
+ * - Game state management
+ * - Input processing
+ * - Frame updates
+ * - State transitions
+ * 
+ * Based on the arcade version, this function is called from game_thread_entry()
+ */
+void game_loop(void) {
+    // Process inputs and handle state changes
+    process_inputs();
+    
+    // Update game state based on current mode
+    switch (gstate) {
+        case GSTATE_INIT:
+            // Initialize game state
+            if (gstate_byte == 0) {
+                init_glob();
+                gstate_byte = 1;
+            }
+            break;
+            
+        case GSTATE_MENU:
+            // Handle menu system updates
+            menu_update();
+            break;
+            
+        case GSTATE_RACE:
+            // Handle race progression
+            race_update();
+            break;
+            
+        case GSTATE_RESULTS:
+            // Handle results screen
+            results_update();
+            break;
+            
+        default:
+            // Default fallback - update basic game state
+            break;
+    }
+    
+    // Frame counter increment
+    frame_counter++;
+}
+
 /*
 */
